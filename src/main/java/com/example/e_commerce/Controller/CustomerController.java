@@ -25,6 +25,17 @@ public class CustomerController {
         }
     }
 
+    @PostMapping
+    @RequestMapping("/allOrder")
+    public ResponseEntity<String> allOrder(char c, int customerId){
+        try{
+            String result = customerService.allOrder(c, customerId);
+            return new ResponseEntity<>(result, HttpStatus.OK);
+        }catch (Exception e){
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
+        }
+    }
+
 //    @RequestMapping("/addToCart")
 //    public String addToCart(@RequestParam("prodId") Integer prodId){
 //        String result = customerService.addToCart(prodId);
