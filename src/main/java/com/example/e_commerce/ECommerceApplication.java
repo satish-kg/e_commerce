@@ -11,3 +11,9 @@ public class ECommerceApplication {
 	}
 
 }
+
+/*
+order for all products starting with 'a'
+get  max price obj for a categor
+most ordered obj (in case of a tie, go for higher price
+ */
