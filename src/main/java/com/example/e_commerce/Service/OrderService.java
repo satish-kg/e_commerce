@@ -25,26 +25,26 @@ public class OrderService {
     @Autowired
     CustormerRepository custormerRepository;
 
-    public String addOrder(List<Integer> prodIdList, PaymentMode paymentMode, int customerId){
-        OrderEntity orderEntity = new OrderEntity();
-        List<ProductEntity> order = new ArrayList<>();
-
-        for(int x : prodIdList){
-            order.add(productRepository.findById(x).get());
-        }
-
-        orderEntity.setProductListForAnOrder(order);
-        CustomerEntity customer = custormerRepository.findById(customerId).get();
-        orderEntity.setCustomer(customer);
-        orderEntity.setPaymentMode(paymentMode);
-
-        List<OrderEntity> orderEntityListOfCustomer = customer.getOrderListForCustomer();
-        orderEntityListOfCustomer.add(orderEntity);
-
-        custormerRepository.save(customer);
-        orderRepository.save(orderEntity);
-
-        return "Order added successfully!!";
-    }
+//    public String addOrder(List<Integer> prodIdList, PaymentMode paymentMode, int customerId){
+//        OrderEntity orderEntity = new OrderEntity();
+//        List<ProductEntity> order = new ArrayList<>();
+//
+//        for(int x : prodIdList){
+//            order.add(productRepository.findById(x).get());
+//        }
+//
+//        orderEntity.setProductListForAnOrder(order);
+//        CustomerEntity customer = custormerRepository.findById(customerId).get();
+//        orderEntity.setCustomer(customer);
+//        orderEntity.setPaymentMode(paymentMode);
+//
+//        List<OrderEntity> orderEntityListOfCustomer = customer.getOrderListForCustomer();
+//        orderEntityListOfCustomer.add(orderEntity);
+//
+//        custormerRepository.save(customer);
+//        orderRepository.save(orderEntity);
+//
+//        return "Order added successfully!!";
+//    }
 
 }

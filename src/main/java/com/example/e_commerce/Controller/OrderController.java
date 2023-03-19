@@ -19,14 +19,14 @@ public class OrderController {
     @Autowired
     OrderService orderService;
 
-    @PostMapping("/addOrder")
-    public ResponseEntity<String> addOrder(List<Integer>prodIdList, PaymentMode paymentMode, int customerId){
-        try{
-            String result = orderService.addOrder(prodIdList, paymentMode, customerId);
-            return new ResponseEntity<>(result, HttpStatus.OK);
-        }catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-    }
+//    @PostMapping("/addOrder")
+//    public ResponseEntity<String> addOrder(List<Integer>prodIdList, PaymentMode paymentMode, int customerId){
+//        try{
+//            String result = orderService.addOrder(prodIdList, paymentMode, customerId);
+//            return new ResponseEntity<>(result, HttpStatus.OK);
+//        }catch (Exception e){
+//            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+//        }
+//    }
 
 }

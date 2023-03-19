@@ -26,9 +26,9 @@ public class CustomerController {
         }
     }
 
-    @PostMapping
+    @GetMapping
     @RequestMapping("/allOrder")
-    public BillEntity allOrder(int customerId){
+    public BillEntity allOrder(Integer customerId){
         try{
             return customerService.allOrder(customerId);
 //            return new ResponseEntity<>(result, HttpStatus.OK);

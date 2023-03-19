@@ -22,7 +22,7 @@ public class ProductEntity {
     private int price;
     private Classification classification;
 
-    @OneToMany
-    @JoinColumn
-    private OrderEntity order;
+//    @OneToMany
+//    @JoinColumn
+//    private OrderEntity order;
 }

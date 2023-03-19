@@ -34,7 +34,7 @@ public class CustomerService {
 
     }
 
-    public BillEntity allOrder(int customerId){
+    public BillEntity allOrder(Integer customerId){
         CustomerEntity customerEntity = custormerRepository.findById(customerId).get();
 
         List<OrderEntity> orderListForCustomer = customerEntity.getOrderListForCustomer();

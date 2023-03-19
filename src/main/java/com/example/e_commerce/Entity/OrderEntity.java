@@ -22,8 +22,8 @@ public class OrderEntity {
     private int orderId;
     private PaymentMode paymentMode;
 
-    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<ProductEntity> productListForAnOrder;
+//    @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+//    private List<ProductEntity> productListForAnOrder;
 
     @ManyToOne
     @JoinColumn
@@ -31,6 +31,5 @@ public class OrderEntity {
 
     @OneToOne(mappedBy = "orderEntityForBill", cascade = CascadeType.ALL)
     private BillEntity billEntity;
-
 
 }

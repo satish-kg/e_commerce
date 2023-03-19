@@ -12,4 +12,5 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
 
     @Query(value = " select *from products where product_name like 'C%' ", nativeQuery = true)
     List<ProductEntity> getAllProductsByChar();
+//    HashMap of ProductName & Price to be returned. Modify bill & CustomerService Layer accordingly.
 }
