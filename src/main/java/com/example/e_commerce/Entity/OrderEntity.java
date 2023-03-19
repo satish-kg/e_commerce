@@ -29,5 +29,8 @@ public class OrderEntity {
     @JoinColumn
     private CustomerEntity customer;
 
+    @OneToOne(mappedBy = "orderEntityForBill", cascade = CascadeType.ALL)
+    private BillEntity billEntity;
+
 
 }

@@ -1,6 +1,7 @@
 package com.example.e_commerce.Controller;
 
 import com.example.e_commerce.DTO.CustomerRequestDTO;
+import com.example.e_commerce.Entity.BillEntity;
 import com.example.e_commerce.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,12 +28,15 @@ public class CustomerController {
 
     @PostMapping
     @RequestMapping("/allOrder")
-    public ResponseEntity<String> allOrder(char c, int customerId){
+    public BillEntity allOrder(int customerId){
         try{
-            String result = customerService.allOrder(c, customerId);
-            return new ResponseEntity<>(result, HttpStatus.OK);
+            return customerService.allOrder(customerId);
+//            return new ResponseEntity<>(result, HttpStatus.OK);
         }catch (Exception e){
-            return new ResponseEntity<>(e.getMessage(), HttpStatus.OK);
+            BillEntity billError = new BillEntity();
+            billError.setCustomerNameForBill("ERROR");
+            billError.setCustomerEmailForBill("ERROR");
+            return billError;
         }
     }
 
