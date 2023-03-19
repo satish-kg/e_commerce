@@ -28,9 +28,10 @@ public class CustomerController {
 
     @GetMapping
     @RequestMapping("/allOrder")
-    public BillEntity allOrder(Integer customerId){
+    public BillEntity allOrder(@RequestParam("customerId") Integer customerId){
         try{
-            return customerService.allOrder(customerId);
+            BillEntity bill = customerService.allOrder(customerId);
+            return bill;
 //            return new ResponseEntity<>(result, HttpStatus.OK);
         }catch (Exception e){
             BillEntity billError = new BillEntity();
