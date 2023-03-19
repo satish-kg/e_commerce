@@ -10,4 +10,9 @@ public class ProductService {
     @Autowired
     ProductRepository productRepository;
 
+    public String addToCart(int prodId){
+
+        return "product successfully added to the cart!";
+    }
+
 }

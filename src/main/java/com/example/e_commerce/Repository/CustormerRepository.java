@@ -6,4 +6,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CustormerRepository extends JpaRepository<CustomerEntity, Integer> {
+
+
+//    SELECT * FROM table_name WHERE columnname LIKE 'A%'
+
+
 }
