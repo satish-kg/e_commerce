@@ -6,11 +6,13 @@ import com.example.e_commerce.Entity.BillEntity;
 import com.example.e_commerce.Entity.CustomerEntity;
 import com.example.e_commerce.Entity.OrderEntity;
 import com.example.e_commerce.Entity.ProductEntity;
+import com.example.e_commerce.Enum.PaymentMode;
 import com.example.e_commerce.Repository.CustormerRepository;
 import com.example.e_commerce.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -34,12 +36,20 @@ public class CustomerService {
 
     }
 
-    public BillEntity allOrder(Integer customerId){
+    public BillEntity allOrder(Integer customerId, PaymentMode paymentMode){
+
         CustomerEntity customerEntity = custormerRepository.findById(customerId).get();
 
         List<OrderEntity> orderListForCustomer = customerEntity.getOrderListForCustomer();
 
-        List<ProductEntity> productListForOrder = productRepository.getAllProductsByChar();
+        List<Integer> productIdListForOrder = productRepository.getAllProductsByChar();
+
+        List<ProductEntity> productListForOrder = new ArrayList<>();
+
+        for(int x : productIdListForOrder){
+            ProductEntity prod = productRepository.findById(x).get();
+            productListForOrder.add(prod);
+        }
 
         BillEntity billEntity = new BillEntity();
 
@@ -70,7 +80,17 @@ public class CustomerService {
         billEntity.setProductCostForBill(prodCostForBillEntity);
         billEntity.setTotalCost(totalCost);
 //        OrderEntity orderEntity =
+
+        OrderEntity orderEntity = new OrderEntity();
+        orderEntity.setCustomer(customerEntity);
+        orderEntity.setBillEntity(billEntity);
+        orderEntity.setPaymentMode(paymentMode);
+
+        orderListForCustomer.add(orderEntity);
+        customerEntity.setOrderListForCustomer(orderListForCustomer);
+
         return billEntity;
+
     }
 
     /*

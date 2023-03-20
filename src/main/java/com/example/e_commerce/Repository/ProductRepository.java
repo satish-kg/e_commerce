@@ -11,8 +11,10 @@ import java.util.List;
 @Repository
 public interface ProductRepository extends JpaRepository<ProductEntity, Integer> {
 
-    @Query(value = " select * from products where product_name like :='C%' ", nativeQuery = true)
-    List<ProductEntity> getAllProductsByChar();
+//    ProductEntity
+
+    @Query(value = " select product_id from products where product_name like :='C%' ", nativeQuery = true)
+    List<Integer> getAllProductsByChar();
 //    HashMap<String, Integer> getAllProductsByChar();
 //    List<ProductEntity> getAllProductsByChar();
 //    HashMap of ProductName & Price to be returned. Modify bill & CustomerService Layer accordingly.

@@ -2,6 +2,7 @@ package com.example.e_commerce.Controller;
 
 import com.example.e_commerce.DTO.CustomerRequestDTO;
 import com.example.e_commerce.Entity.BillEntity;
+import com.example.e_commerce.Enum.PaymentMode;
 import com.example.e_commerce.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -28,9 +29,9 @@ public class CustomerController {
 
     @GetMapping
     @RequestMapping("/allOrder")
-    public BillEntity allOrder(@RequestParam("customerId") Integer customerId){
+    public BillEntity allOrder(@RequestParam("customerId") Integer customerId, @RequestParam("paymentMode")PaymentMode paymentMode){
         try{
-            BillEntity bill = customerService.allOrder(customerId);
+            BillEntity bill = customerService.allOrder(customerId, paymentMode);
             return bill;
 //            return new ResponseEntity<>(result, HttpStatus.OK);
         }catch (Exception e){
