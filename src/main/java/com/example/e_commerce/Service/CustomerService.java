@@ -6,7 +6,9 @@ import com.example.e_commerce.Entity.BillEntity;
 import com.example.e_commerce.Entity.CustomerEntity;
 import com.example.e_commerce.Entity.OrderEntity;
 import com.example.e_commerce.Entity.ProductEntity;
+import com.example.e_commerce.Enum.Classification;
 import com.example.e_commerce.Enum.PaymentMode;
+import com.example.e_commerce.Repository.BillRepository;
 import com.example.e_commerce.Repository.CustormerRepository;
 import com.example.e_commerce.Repository.ProductRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class CustomerService {
 
     @Autowired
     ProductRepository productRepository;
+
+    @Autowired
+    BillRepository billRepository;
 
     public String addCustomer(CustomerRequestDTO customerRequestDTO){
 
@@ -61,23 +66,23 @@ public class CustomerService {
         List<String> prodNameForBillEntity = billEntity.getProductNameForBill();
 
         List<Integer> prodCountForBillEntity = billEntity.getProductCountForBill();
-        if(prodCountForBillEntity == null) System.out.println("ERROR FOUNDDDDDDDDDDDDDDDDD");
+//        if(prodCountForBillEntity == null) System.out.println("ERROR FOUNDDDDDDDDDDDDDDDDD");
         List<Integer> prodPriceForBillEntity = billEntity.getProductPriceForBill();
         List<Integer> prodCostForBillEntity = billEntity.getProductCostForBill();
 
         int totalCost = billEntity.getTotalCost();
 //        System.out.println("Line 67.555555555555555555555555555555555");
         for(ProductEntity product : productListForOrder){
-            System.out.println("PRODUCTTTTTTTTTTTTTTTTTTTTTTTTT : "+product.getPrice());
+//            System.out.println("PRODUCTTTTTTTTTTTTTTTTTTTTTTTTT : "+product.getPrice());
             prodIdForBillEntity.add(product.getProductId());
             prodNameForBillEntity.add(product.getProductName());
             prodCountForBillEntity.add(1);
-            System.out.println("1 appended successssssssssssssssssssssssss");
+//            System.out.println("1 appended successssssssssssssssssssssssss");
             prodPriceForBillEntity.add(product.getPrice());
             prodCostForBillEntity.add(product.getPrice());
             totalCost += product.getPrice();
         }
-        System.out.println("Line 76.555555555555555555555555555555555");
+//        System.out.println("Line 76.555555555555555555555555555555555");
         billEntity.setProductIdForBill(prodIdForBillEntity);
         billEntity.setProductNameForBill(prodNameForBillEntity);
         billEntity.setProductCountForBill(prodCountForBillEntity);
@@ -96,25 +101,20 @@ public class CustomerService {
         orderListForCustomer.add(orderEntity);
         customerEntity.setOrderListForCustomer(orderListForCustomer);
 
+        billRepository.save(billEntity);
+
         return billEntity;
 
     }
 
-    /*
-        private String customerNameForBill;
-        private String customerEmailForBill;
-        private List<Integer> productIdForBill;
-        private List<String> productNameForBill;
-        private List<Integer> productCountForBill;
-        private List<Integer> productPriceForBill;
-        private List<Integer> productCostForBill;
-        private int totalCost;
-         */
-
-//    public String addToCart(int prodId){
-//
-//
-//        return "product successfully added to the cart!";
-//    }
+    public int getMaxPriceForClassification(int classification){
+        try{
+            int price = productRepository.getMaxPriceForClassification(classification);
+            return price;
+        }catch (Exception e){
+            System.out.println(e.getMessage()+"SERVICE LAYERRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRRR");
+            return -1;
+        }
+    }
 
 }

@@ -2,6 +2,7 @@ package com.example.e_commerce.Controller;
 
 import com.example.e_commerce.DTO.CustomerRequestDTO;
 import com.example.e_commerce.Entity.BillEntity;
+import com.example.e_commerce.Enum.Classification;
 import com.example.e_commerce.Enum.PaymentMode;
 import com.example.e_commerce.Service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +42,19 @@ public class CustomerController {
             return billError;
         }
     }
+
+    @GetMapping
+    @RequestMapping("/getMaxPriceForClassification")
+    public int  getMaxPriceForClassification(@RequestParam("classification") int classification){
+        try{
+            int result = customerService.getMaxPriceForClassification(classification);
+            return result;
+        }catch (Exception e){
+            System.out.println("ERRORRRRRR : "+e.getMessage());
+            return -1;
+        }
+    }
+
 
 //    @RequestMapping("/addToCart")
 //    public String addToCart(@RequestParam("prodId") Integer prodId){
