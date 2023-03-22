@@ -13,7 +13,7 @@ import java.util.List;
 @Entity
 @Builder
 //@NoArgsConstructor
-//@AllArgsConstructor
+@AllArgsConstructor
 @Table(name = "bills")
 public class BillEntity {
 
@@ -47,7 +47,11 @@ public class BillEntity {
     }
 
     public BillEntity(){
-
+        this.productIdForBill = new ArrayList<Integer>();
+        this.productNameForBill = new ArrayList<String>();
+        this.productCountForBill = new ArrayList<Integer>();
+        this.productPriceForBill = new ArrayList<Integer>();
+        this.productCostForBill = new ArrayList<Integer>();
     }
 
     @OneToOne

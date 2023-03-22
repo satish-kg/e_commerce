@@ -13,7 +13,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
 
 //    ProductEntity
 
-    @Query(value = " select product_id from products where product_name like :='C%' ", nativeQuery = true)
+    @Query(value = " select product_id from products where product_name like 'C%' ", nativeQuery = true)
     List<Integer> getAllProductsByChar();
 //    HashMap<String, Integer> getAllProductsByChar();
 //    List<ProductEntity> getAllProductsByChar();

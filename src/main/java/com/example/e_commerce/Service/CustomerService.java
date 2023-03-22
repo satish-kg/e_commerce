@@ -51,6 +51,7 @@ public class CustomerService {
             productListForOrder.add(prod);
         }
 
+
         BillEntity billEntity = new BillEntity();
 
         billEntity.setCustomerNameForBill(customerEntity.getName());
@@ -58,27 +59,33 @@ public class CustomerService {
 
         List<Integer> prodIdForBillEntity = billEntity.getProductIdForBill();
         List<String> prodNameForBillEntity = billEntity.getProductNameForBill();
+
         List<Integer> prodCountForBillEntity = billEntity.getProductCountForBill();
+        if(prodCountForBillEntity == null) System.out.println("ERROR FOUNDDDDDDDDDDDDDDDDD");
         List<Integer> prodPriceForBillEntity = billEntity.getProductPriceForBill();
         List<Integer> prodCostForBillEntity = billEntity.getProductCostForBill();
 
         int totalCost = billEntity.getTotalCost();
-
+//        System.out.println("Line 67.555555555555555555555555555555555");
         for(ProductEntity product : productListForOrder){
+            System.out.println("PRODUCTTTTTTTTTTTTTTTTTTTTTTTTT : "+product.getPrice());
             prodIdForBillEntity.add(product.getProductId());
             prodNameForBillEntity.add(product.getProductName());
             prodCountForBillEntity.add(1);
+            System.out.println("1 appended successssssssssssssssssssssssss");
             prodPriceForBillEntity.add(product.getPrice());
             prodCostForBillEntity.add(product.getPrice());
             totalCost += product.getPrice();
         }
-
+        System.out.println("Line 76.555555555555555555555555555555555");
         billEntity.setProductIdForBill(prodIdForBillEntity);
         billEntity.setProductNameForBill(prodNameForBillEntity);
         billEntity.setProductCountForBill(prodCountForBillEntity);
         billEntity.setProductPriceForBill(prodPriceForBillEntity);
         billEntity.setProductCostForBill(prodCostForBillEntity);
         billEntity.setTotalCost(totalCost);
+
+//        System.out.println("Line 84.555555555555555555555555555555555");
 //        OrderEntity orderEntity =
 
         OrderEntity orderEntity = new OrderEntity();
