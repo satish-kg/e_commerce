@@ -6,13 +6,14 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @Entity
 @Builder
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 @Table(name = "bills")
 public class BillEntity {
 
@@ -27,6 +28,27 @@ public class BillEntity {
     private List<Integer> productPriceForBill;
     private List<Integer> productCostForBill;
     private int totalCost;
+
+    public BillEntity(String userName, String userEmail, List<Integer>prodId, List<String>prodName, List<Integer>prodCount, List<Integer>prodPrice, List<Integer>prodCost, int total){
+        prodId = new ArrayList<Integer>();
+        prodName = new ArrayList<String>();
+        prodCount = new ArrayList<Integer>();
+        prodPrice = new ArrayList<Integer>();
+        prodCost = new ArrayList<Integer>();
+
+        this.customerNameForBill = userName;
+        this.customerEmailForBill = userEmail;
+        this.productIdForBill = prodId;
+        this.productNameForBill = prodName;
+        this.productCountForBill = prodCount;
+        this.productPriceForBill = prodPrice;
+        this.productCostForBill = prodCost;
+        this.totalCost = total;
+    }
+
+    public BillEntity(){
+
+    }
 
     @OneToOne
     @JoinColumn
