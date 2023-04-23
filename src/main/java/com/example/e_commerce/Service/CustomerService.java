@@ -107,7 +107,7 @@ public class CustomerService {
 
     }
 
-    public int getMaxPriceForClassification(int classification){
+    public int getMaxPriceForClassification(Classification classification){
         try{
             int price = productRepository.getMaxPriceForClassification(classification);
             return price;

@@ -20,6 +20,7 @@ public class ProductEntity {
     private int productId;
     private String productName;
     private int price;
+    @Enumerated(EnumType.STRING)
     private Classification classification;
 
 //    @OneToMany

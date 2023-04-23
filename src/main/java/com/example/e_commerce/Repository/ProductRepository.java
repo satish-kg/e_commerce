@@ -18,7 +18,7 @@ public interface ProductRepository extends JpaRepository<ProductEntity, Integer>
     List<Integer> getAllProductsByChar();
 
     @Query(value = "select max(price) from products where classification := classificationPassed ",nativeQuery = true)
-    int getMaxPriceForClassification(int classificationPassed);
+    int getMaxPriceForClassification(Classification classificationPassed);
 //    HashMap<String, Integer> getAllProductsByChar();
 //    List<ProductEntity> getAllProductsByChar();
 //    HashMap of ProductName & Price to be returned. Modify bill & CustomerService Layer accordingly.

@@ -45,7 +45,7 @@ public class CustomerController {
 
     @GetMapping
     @RequestMapping("/getMaxPriceForClassification")
-    public int  getMaxPriceForClassification(@RequestParam("classification") int classification){
+    public int  getMaxPriceForClassification(@RequestParam("classification") Classification classification){
         try{
             int result = customerService.getMaxPriceForClassification(classification);
             return result;
